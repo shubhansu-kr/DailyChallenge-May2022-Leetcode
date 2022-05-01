@@ -12,8 +12,40 @@ using namespace std;
 
 class Solution
 {
-    // Wrong answer : 
-    // "sh##" "s#f#" -> Expected : true , output : false 
+public:
+    void edit(string &s)
+    {
+        int i = 0;
+        while (i < s.length())
+        {
+            if (s[i] == '#')
+            {
+                if (i > 0)
+                {
+                    s.erase(i - 1, 2);
+                    --i;
+                }
+                else
+                {
+                    s.erase(i, 1);
+                }
+                continue;
+            }
+            ++i;
+        }
+    }
+    bool backspaceCompare(string s, string t)
+    {
+        edit(s);
+        edit(t);
+        return s == t;
+    }
+};
+
+class Solution
+{
+    // Wrong answer :
+    // "sh##" "s#f#" -> Expected : true , output : false
 public:
     bool backspaceCompare(string s, string t)
     {
