@@ -12,6 +12,42 @@ using namespace std;
 
 class Solution
 {
+    // Try solving using stack
+    // Wrong solution 
+public:
+    void edit(string &s)
+    {
+        stack<char> p;
+        for (auto a : s)
+        {
+            p.push(a);
+        }
+        s.clear();
+        while (!s.empty())
+        {
+            if (p.top() == '#')
+            {
+                p.pop();
+                p.pop();
+            }
+            else
+            {
+                s.push_back(p.top());
+                p.pop();
+            }
+        }
+    }
+    bool backspaceCompare(string s, string t)
+    {
+
+        edit(s);
+        edit(t);
+        return s == t;
+    }
+};
+
+class Solution
+{
 public:
     void edit(string &s)
     {
