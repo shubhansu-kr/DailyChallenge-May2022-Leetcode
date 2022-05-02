@@ -14,7 +14,36 @@ class Solution2
 public:
     vector<int> sortArrayByParity(vector<int> &nums)
     {
-        // Approach 1 : Erase odd 
+        // Approach 1 : Erase odd
+        int flag = 0;
+        for (int i = nums.size() - 1; i >= 0; --i)
+        {
+            if (flag)
+            {
+                if (nums[i] % 2 != 0)
+                {
+                    nums.push_back(nums[i]);
+                    nums.erase(nums.begin() + i, nums.begin() + i + 1);
+                }
+            }
+            else
+            {
+                if (nums[i] % 2 == 0)
+                {
+                    flag = 1;
+                }
+            }
+        }
+        return nums;
+    }
+};
+class Solution2
+{
+    // Wrong answer : Infinitive loop :(
+public:
+    vector<int> sortArrayByParity(vector<int> &nums)
+    {
+        // Approach 1 : Erase odd
         for (int i = 0; i < nums.size(); i++)
         {
             if (nums[i] % 2 != 0)
