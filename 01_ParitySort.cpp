@@ -8,6 +8,28 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+class Solution2
+{
+    // Wrong answer : Infinitive loop :(
+public:
+    vector<int> sortArrayByParity(vector<int> &nums)
+    {
+        // Approach 1 : Erase odd 
+        for (int i = 0; i < nums.size(); i++)
+        {
+            if (nums[i] % 2 != 0)
+            {
+                nums.push_back(nums[i]);
+                nums.erase(nums.begin() + i, nums.begin() + i + 1);
+                // Since we are adding at the end and erasing from the front need to correct
+                // the index
+                --i;
+            }
+        }
+        return nums;
+    }
+};
+
 class Solution1
 {
 public:
