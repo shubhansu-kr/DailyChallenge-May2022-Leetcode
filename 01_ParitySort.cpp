@@ -13,15 +13,29 @@ class Solution1
 public:
     vector<int> sortArrayByParity(vector<int> &nums)
     {
-        // Approach 1 : insert and erase ;
-        for (int i = 0; i < nums.size(); i++)
+        // Approach 1 : Using stack
+        stack<int> odd, even;
+        for (auto a : nums)
         {
-            if (nums[i] % 2 == 0)
+            if (a % 2 == 0)
             {
-                int temp = nums[i];
-                nums.erase(nums.begin() + i, nums.begin() + i + 1);
-                nums.insert(nums.begin(), temp);
+                even.push(a);
             }
+            else
+            {
+                odd.push(a);
+            }
+        }
+        nums.clear();
+        while (!even.empty())
+        {
+            nums.push_back(even.top());
+            even.pop();
+        }
+        while (!odd.empty())
+        {
+            nums.push_back(odd.top());
+            odd.pop();
         }
         return nums;
     }
@@ -29,7 +43,7 @@ public:
 
 class Solution
 {
-    // 210 ms : Really slow 
+    // 210 ms : Really slow
 public:
     vector<int> sortArrayByParity(vector<int> &nums)
     {
