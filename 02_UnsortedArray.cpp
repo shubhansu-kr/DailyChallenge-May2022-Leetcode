@@ -9,10 +9,66 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+class Solution1
+{
+
+public:
+    int findUnsortedSubarray(vector<int> &nums)
+    {
+        // Min track Approach
+        int front = 0, end = -1;
+        for (int i = 0; i < nums.size() - 1; ++i)
+        {
+            if (nums[i] > nums[i + 1])
+            {
+                front = i;
+                break;
+            }
+        }
+        for (int i = nums.size() - 1; i > 0; --i)
+        {
+            if (nums[i] < nums[i - 1])
+            {
+                end = i;
+                break;
+            }
+        }
+        if (end != -1)
+        {
+            // find min and max between front and end
+            int minS = INT_MAX, maxS = INT_MIN;
+            for (int i = front; i <= end; ++i)
+            {
+                minS = min(minS, nums[i]);
+                maxS = max(maxS, nums[i]);
+            }
+            // Now we have min and max, and we have toh find the end points
+            // in nums array so that they can match
+            for (int i = 0; i < nums.size(); i++)
+            {
+                if (nums[i] > minS)
+                {
+                    front = i;
+                    break;
+                }
+            }
+            for (int i = nums.size() - 1; i >= 0; i--)
+            {
+                if (nums[i] < maxS)
+                {
+                    end = i;
+                    break;
+                }
+            }
+        }
+        return end - front + 1;
+    }
+};
+
 class Solution
 {
-    // Brute force approach : 
-    // Sort and compare : O(NlogN + 2N) time , O(N) space 
+    // Brute force approach :
+    // Sort and compare : O(NlogN + 2N) time , O(N) space
 public:
     int findUnsortedSubarray(vector<int> &nums)
     {
