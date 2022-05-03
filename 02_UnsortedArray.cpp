@@ -11,7 +11,42 @@ using namespace std;
 
 class Solution
 {
-    // Incomplete approach : Wrong answer. 
+    // Brute force approach : 
+    // Sort and compare : O(NlogN + 2N) time , O(N) space 
+public:
+    int findUnsortedSubarray(vector<int> &nums)
+    {
+        // Approach 1  : Sort the array and find the difference
+        vector<int> temp = nums;
+        sort(nums.begin(), nums.end());
+        if (temp == nums)
+        {
+            return 0;
+        }
+        int front, end;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            if (nums[i] != temp[i])
+            {
+                front = i;
+                break;
+            }
+        }
+        for (int i = nums.size() - 1; i > 0; --i)
+        {
+            if (nums[i] != temp[i])
+            {
+                end = i;
+                break;
+            }
+        }
+        return end - front + 1;
+    }
+};
+
+class Solution
+{
+    // Incomplete approach : Wrong answer.
 public:
     int findUnsortedSubarray(vector<int> &nums)
     {
