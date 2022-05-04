@@ -11,6 +11,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+class Solution2
+{
+public:
+    int maxOperations(vector<int> &nums, int k)
+    {
+        int count = 0;
+        unordered_map<int, int> p;
+        for (auto a : nums)
+        {
+            if (p[k - a] > 0)
+                --p[k - a], ++count;
+            else
+                ++p[a];
+        }
+        return count;
+    }
+};
+
 class Solution1
 {
     // 2 pointer approach
