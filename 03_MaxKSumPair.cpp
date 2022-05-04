@@ -11,6 +11,38 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+class Solution {
+    // Brute Force: Without sort  (TLE)
+public:
+    int maxOperations(vector<int>& nums, int k) {
+        int count = 0;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            if (nums[i] >= k)
+                continue;
+            if (nums[i])
+            {
+                for (int j = i + 1; j < nums.size(); j++)
+                {
+                    if (nums[j])
+                    {
+                        int s = nums[i] + nums[j];
+                        if (nums[j] >= k || s > k)
+                            continue;
+                        if (s == k)
+                        {
+                            ++count;
+                            nums[j] = 0;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        return count;
+    }
+};
+
 class Solution
 {
     // Brute force : Time Limit Exceeded 
