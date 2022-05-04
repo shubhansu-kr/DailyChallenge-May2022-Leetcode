@@ -11,9 +11,39 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+class Solution1
+{
+    // 2 pointer approach
+public:
+    int maxOperations(vector<int> &nums, int k)
+    {
+        int l = 0, count = 0;
+        int r = nums.size() - 1;
+        sort(nums.begin(), nums.end());
+        while (l < r)
+        {
+            if (nums[l] + nums[r] == k)
+            {
+                ++count;
+                ++l;
+                --r;
+            }
+            else if (nums[l] + nums[r] < k)
+            {
+                ++l;
+            }
+            else if (nums[l] + nums[r] > k)
+            {
+                --r;
+            }
+        }
+        return count;
+    }
+};
+
 class Solution
 {
-    // Discussion solution 
+    // Discussion solution
 public:
     int maxOperations(vector<int> &nums, int k)
     {
@@ -49,7 +79,7 @@ public:
         int count = 0;
         for (auto &a : p)
         {
-            if (2 * a.first  == k)
+            if (2 * a.first == k)
             {
                 count += a.second / 2;
                 a.second -= a.second / 2 * 2;
