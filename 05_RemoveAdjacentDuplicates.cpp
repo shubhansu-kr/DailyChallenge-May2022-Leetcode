@@ -14,7 +14,49 @@ using namespace std;
 
 class Solution
 {
-    // Time limit Exceeded 
+public:
+    string removeDuplicates(string s, int k)
+    {
+        // Using stack
+        stack<pair<char, int>> p;
+        p.push({s[0], 1});
+        for (int i = 1; i < s.length(); i++)
+        {
+            if (s[i] == p.top().first)
+            {
+                ++p.top().second;
+            }
+            else
+            {
+                p.push({s[i], 1});
+            }
+            if (p.top().second == k)
+            {
+                p.pop();
+            }
+        }
+        // Reconstruct the string
+        s.clear();
+        while (!p.empty())
+        {
+            if (p.top().second)
+            {
+                s.push_back(p.top().first);
+                --p.top().second;
+            }
+            else
+            {
+                p.pop();
+            }
+        }
+        reverse(s.begin(), s.end());
+        return s;
+    }
+};
+
+class Solution
+{
+    // Time limit Exceeded
 public:
     string removeDuplicates(string s, int k)
     {
