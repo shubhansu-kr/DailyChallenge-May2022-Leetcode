@@ -9,12 +9,40 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution
+class Solution1
 {
+    // Brute Force : Time Limit Exceeded :(
 public:
     bool find132pattern(vector<int> &nums)
     {
-        if (nums.size() < 3) return false ;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            for (int j = i + 1; j < nums.size(); j++)
+            {
+                if (nums[j] > nums[i])
+                {
+                    for (int k = j + 1; k < nums.size(); k++)
+                    {
+                        if (nums[k] > nums[i] && nums[k] < nums[j])
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+};
+
+class Solution
+{
+    // Wrong answer : i, j, k are not consecutive.
+public:
+    bool find132pattern(vector<int> &nums)
+    {
+        if (nums.size() < 3)
+            return false;
         for (int i = 0; i < nums.size() - 2; i++)
         {
             if (nums[i] < nums[i + 1] && nums[i] < nums[i + 2] && nums[i + 1] > nums[i + 2])
@@ -28,6 +56,11 @@ public:
 
 int main()
 {
-
+    cout << "[";
+    for (int i = 0; i < 1000; i++)
+    {
+        cout << i << ", ";
+    }
+    cout << "1000]";
     return 0;
 }
