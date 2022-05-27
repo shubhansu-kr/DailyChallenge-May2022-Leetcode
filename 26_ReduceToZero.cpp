@@ -8,6 +8,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+class Solution1
+{
+    // Discussion solution 
+public:
+    int numberOfSteps(int num)
+    {
+        return num ? __builtin_popcount(num) + 31 - __builtin_clz(num) : 0;
+    }
+};
+
 class Solution
 {
     // Brute force
