@@ -8,6 +8,35 @@ using namespace std;
 
 class Solution
 {
+    // TLE : Last 2 Test Case Failed
+public:
+    bool hasAllCodes(string s, int k)
+    {
+        for (int i = 0; i < (1 << k); ++i)
+        {
+            string temp;
+            for (int j = 0; j < k; ++j)
+            {
+                if (i & (1 << j))
+                {
+                    temp.push_back('1');
+                }
+                else
+                {
+                    temp.push_back('0');
+                }
+            }
+            if (s.find(temp) == string::npos)
+            {
+                return false;
+            }
+        }
+        return true; 
+    }
+};
+
+class Solution
+{
 
     // Time Limit Exceeded
 
@@ -35,12 +64,13 @@ public:
             }
             bin.emplace_back(temp);
         }
-        // All the possible binary are stored in the bin
+        // All the possible binary are stored in the bin (Edit : No need to save the shit)
         // check if each binary exists in given string
         for (int i = 0; i < bin.size(); ++i)
         {
-            if (s.find(bin[i]) == string::npos) {
-                return false ;
+            if (s.find(bin[i]) == string::npos)
+            {
+                return false;
             }
         }
         return true;
