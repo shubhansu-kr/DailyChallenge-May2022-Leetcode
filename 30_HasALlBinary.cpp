@@ -7,8 +7,24 @@
 using namespace std;
 
 class Solution
-{ 
-    // Recursion TLE 
+{
+public:
+    bool hasAllCodes(string s, int k)
+    {
+        if (k > s.size())
+            return false;
+        unordered_set<string> mySet;
+        for (int i = 0; i <= s.size() - k; ++i)
+        {
+            mySet.insert(s.substr(i, k));
+        }
+        return mySet.size() == (1 << k);
+    }
+};
+
+class Solution
+{
+    // Recursion TLE
 public:
     bool hasAllCodes(string s, int k)
     {
