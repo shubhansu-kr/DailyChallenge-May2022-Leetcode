@@ -7,6 +7,36 @@
 using namespace std;
 
 class Solution
+{ 
+    // Recursion TLE 
+public:
+    bool hasAllCodes(string s, int k)
+    {
+        string temp(k, '0');
+        return check(temp, s);
+    }
+    bool check(string &temp, string &s, int i = 0)
+    {
+        if (i >= temp.size())
+        {
+            if (s.find(temp) == string::npos)
+            {
+                return false;
+            }
+            return true;
+        }
+        // Pick
+        temp[i] = '0';
+        if (check(temp, s, i + 1))
+        {
+            temp[i] = '1';
+            return check(temp, s, i + 1);
+        }
+        return false;
+    }
+};
+
+class Solution
 {
     // TLE : Last 2 Test Case Failed
 public:
@@ -31,7 +61,7 @@ public:
                 return false;
             }
         }
-        return true; 
+        return true;
     }
 };
 
