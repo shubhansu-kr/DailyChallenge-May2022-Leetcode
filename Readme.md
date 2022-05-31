@@ -1,6 +1,6 @@
 # May Leetcode Challenge 2022
 
-1. This repo contains 30 Questions.
+1. This repo contains 31 Questions.
 2. File name is the short form of Problem Title.
 3. Each file contains :
     1. Link to the problem
@@ -17,4 +17,4 @@ This repo has solution to the May Leetcode daily Challenge.
 
 My leetcode profile : [shubhansu-kr](https://leetcode.com/shubhansu-kr/)
 
-Duration : May 1 to ...  
+Duration : May 1 to ...  May 31 2022.
